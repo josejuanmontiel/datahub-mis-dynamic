@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools","acryl-datahub"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "custom_source_examples"
+version = "1.0"
+
+[tool.setuptools]
+include-package-data = true
+# This is already the default behaviour if you are using
+# pyproject.toml to configure your build.
+# You can deactivate that with `include-package-data = false`
+
+[tool.setuptools.packages.find]
+# All the following settings are optional:
+where = ["src"]  # ["."] by default
+include = ["my_source*"]  # ["*"] by default
+exclude = ["my_source.tests*"]  # empty by default
+namespaces = false  # true by default
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
