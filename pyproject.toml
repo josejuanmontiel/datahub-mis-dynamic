@@ -20,6 +20,14 @@ exclude = ["my_source.tests*"]  # empty by default
 namespaces = false  # true by default
 
 [tool.pytest.ini_options]
+minversion = "6.0"
 addopts = [
     "--import-mode=importlib",
+    "--lf",
+    "--nf",
+]
+pythonpath = "src"
+testpaths = [
+    "tests",
+    "integration",
 ]

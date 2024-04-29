@@ -1,3 +1,7 @@
+import json
+import os
+
+from enum import auto
 from typing import Iterable
 
 from datahub.configuration.common import ConfigModel
@@ -6,13 +10,21 @@ from datahub.ingestion.api.source import Source, SourceReport
 from datahub.ingestion.api.workunit import MetadataWorkUnit
 from datahub.metadata.com.linkedin.pegasus2avro.mxe import MetadataChangeEvent
 
-import json
-import os
 
+from pydantic import validator
+from pydantic.fields import Field
+
+from datahub.configuration.common import ConfigEnum, ConfigModel, ConfigurationError
+from datahub.configuration.validate_field_deprecation import pydantic_field_deprecated
+
+class FileReadMode(ConfigEnum):
+    STREAM = auto()
+    BATCH = auto()
+    AUTO = auto()
 
 class MyCustomSourceConfig(ConfigModel):
+    rootPath: str = ""
     env: str = "PROD"
-
 
 class MyCustomSource(Source):
     source_config: MyCustomSourceConfig
@@ -27,7 +39,8 @@ class MyCustomSource(Source):
         config = MyCustomSourceConfig.parse_obj(config_dict)
         return cls(config, ctx)
 
-    def get_workunits(self) -> Iterable[MetadataWorkUnit]:
+    def get_workunits_internal(self) -> Iterable[MetadataWorkUnit]:
+        print("123")
         with open(
             os.path.join(os.path.dirname(__file__), "../example_mce/single_mce.json"),
             "r",
