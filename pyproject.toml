@@ -3,7 +3,7 @@ requires = ["setuptools","acryl-datahub"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "custom_source_examples"
+name = "mis_dynamics"
 version = "1.0"
 
 [tool.setuptools]

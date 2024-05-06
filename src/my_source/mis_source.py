@@ -22,27 +22,31 @@ class FileReadMode(ConfigEnum):
     BATCH = auto()
     AUTO = auto()
 
-class MyCustomSourceConfig(ConfigModel):
-    rootPath: str = ""
+class DynamicSourceConfig(ConfigModel):
     env: str = "PROD"
+    absolute: bool = False
+    rootPath: str = "../example_mce/single_mce.json"
 
-class MyCustomSource(Source):
-    source_config: MyCustomSourceConfig
+class DynamicSource(Source):
+    source_config: DynamicSourceConfig
     report: SourceReport = SourceReport()
 
-    def __init__(self, config: MyCustomSourceConfig, ctx: PipelineContext):
+    def __init__(self, config: DynamicSourceConfig, ctx: PipelineContext):
         super().__init__(ctx)
         self.source_config = config
 
     @classmethod
     def create(cls, config_dict, ctx):
-        config = MyCustomSourceConfig.parse_obj(config_dict)
+        config = DynamicSourceConfig.parse_obj(config_dict)
         return cls(config, ctx)
 
     def get_workunits_internal(self) -> Iterable[MetadataWorkUnit]:
-        print("123")
+        relative = ""
+        if ~self.source_config.absolute:
+            relative = os.path.dirname(__file__)
+
         with open(
-            os.path.join(os.path.dirname(__file__), "../example_mce/single_mce.json"),
+            os.path.join(relative, self.source_config.rootPath),
             "r",
         ) as f:
             obj = json.load(f)
@@ -56,3 +60,4 @@ class MyCustomSource(Source):
 
     def close(self) -> None:
         pass
+

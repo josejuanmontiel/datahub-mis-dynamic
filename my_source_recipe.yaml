@@ -1,6 +1,9 @@
 source:
-  type: my_source.custom_ingestion_source.MyCustomSource
+  type: my_source.mis_source.DynamicSource
   config:
-    env: "DEV"
+  # place for your custom config defined in the configModel
+    env: DEV
+    absolute: "true"
+    rootPath: /home/jose/workspace/datahubio/single_mce.json
 sink:
   type: "console"

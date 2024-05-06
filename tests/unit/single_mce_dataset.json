@@ -1,0 +1,87 @@
+{
+    "auditHeader": null,
+    "proposedSnapshot": {
+        "com.linkedin.pegasus2avro.metadata.snapshot.DatasetSnapshot":{
+            "urn": "urn:li:dataset:(urn:li:dataPlatform:adobe,userdb.public.customer_table,PROD).",
+            "aspects": [
+                {
+                    "schemaName": "customer",
+                    "platform": "urn:li:dataPlatform:adobe",
+                    "version": 0,
+                    "created": {
+                        "time": 0,
+                        "actor": "urn:li:corpuser:unknown"
+                    },
+                    "lastModified": {
+                        "time": 1640692800000,
+                        "actor": "urn:li:corpuser:ingestion"
+                    },
+                    "hash": "",
+                    "platformSchema": {
+                        "com.linkedin.schema.OtherSchema": {
+                            "rawSchema": "__insert raw schema here__"
+                        }
+                    },
+                    "fields": [
+                        {
+                            "fieldPath": "address.zipcode",
+                            "nullable": false,
+                            "description": "This is the zipcode of the address. Specified using extended form and limited to addresses in the United States",
+                            "lastModified": {
+                                "time": 1640692800000,
+                                "actor": "urn:li:corpuser:ingestion"
+                            },
+                            "type": {
+                                "type": {
+                                    "com.linkedin.schema.StringType": {}
+                                }
+                            },
+                            "nativeDataType": "VARCHAR(50)",
+                            "recursive": false,
+                            "isPartOfKey": false
+                        },
+                        {
+                            "fieldPath": "address.street",
+                            "nullable": false,
+                            "description": "Street corresponding to the address",
+                            "lastModified": {
+                                "time": 1640692800000,
+                                "actor": "urn:li:corpuser:ingestion"
+                            },
+                            "type": {
+                                "type": {
+                                    "com.linkedin.schema.StringType": {}
+                                }
+                            },
+                            "nativeDataType": "VARCHAR(100)",
+                            "recursive": false,
+                            "isPartOfKey": false
+                        },
+                        {
+                            "fieldPath": "last_sold_date",
+                            "nullable": false,
+                            "description": "Date of the last sale date for this property",
+                            "created": {
+                                "time": 1640692800000,
+                                "actor": "urn:li:corpuser:ingestion"
+                            },
+                            "lastModified": {
+                                "time": 1640692800000,
+                                "actor": "urn:li:corpuser:ingestion"
+                            },
+                            "type": {
+                                "type": {
+                                    "com.linkedin.schema.DateType": {}
+                                }
+                            },
+                            "nativeDataType": "Date",
+                            "recursive": false,
+                            "isPartOfKey": false
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "proposedDelta": null
+}

@@ -8,7 +8,7 @@
                     "com.linkedin.pegasus2avro.identity.CorpUserInfo": {
                         "active": true,
                         "displayName": {
-                            "string": "Harshal Sheth"
+                            "string": "Unit Sheth"
                         },
                         "email": "harshal@sheth.io",
                         "title": {
